@@ -61,4 +61,12 @@ class StudentRepositoryTest {
         System.out.printf("Student List = " + allStudents);
 
     }
+
+    @Test
+    public void findStudentsByFirstName(){
+        List<Student> students = studentRepository.findByFirstName("funto");
+        System.out.println("Number of Students: "+ students.size());
+        students.forEach(System.out::println);
+        //System.out.println("Students: "+ students);
+    }
 }
