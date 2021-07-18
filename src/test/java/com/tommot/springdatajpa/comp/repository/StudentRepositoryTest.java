@@ -1,5 +1,6 @@
 package com.tommot.springdatajpa.comp.repository;
 
+import com.tommot.springdatajpa.comp.entity.Guardian;
 import com.tommot.springdatajpa.comp.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,28 @@ class StudentRepositoryTest {
                 .email("hohn@hotmail.com")
                 .firstName("John")
                 .lastName("Odugbenga")
-                .guardianEmail("odugb.hj@gmail.com")
+                /*.guardianEmail("odugb.hj@gmail.com")
                 .guardianName("Michael Ajayi")
-                .guardianMobile("0809291281212")
+                .guardianMobile("0809291281212")*/
+                .studentUUID(UUID.randomUUID())
+                .createdAt(LocalDateTime.now())
+                .build();
+        studentRepository.save(student);
+    }
+
+    @Test
+    public void saveStudentWithGuardian(){
+        Guardian guardian = Guardian.builder()
+                .name("Lateef K")
+                .email("latkee@aol.net")
+                .mobile("+1764353636")
+                .build();
+
+        Student student = Student.builder()
+                .email("funtusa@gmail.com")
+                .firstName("Funto")
+                .lastName("S Aanuoluwa")
+                .guardian(guardian)
                 .studentUUID(UUID.randomUUID())
                 .createdAt(LocalDateTime.now())
                 .build();

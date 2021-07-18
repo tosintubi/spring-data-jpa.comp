@@ -42,9 +42,9 @@ public class Student {
 
     @Column(name = "email_address", nullable = false)
     private String email;
-    private String guardianName;
-    private String guardianEmail;
-    private String guardianMobile;
     private LocalDateTime createdAt;
+
+    @Embedded
+    private Guardian guardian;
 
 }
