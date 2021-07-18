@@ -24,7 +24,7 @@ class StudentRepositoryTest {
     @Test
     public void saveStudent(){
         Student student = Student.builder()
-                .email("hohn@hotmail.com")
+                .email("hojhn@hotmail.com")
                 .firstName("John")
                 .lastName("Odugbenga")
                 /*.guardianEmail("odugb.hj@gmail.com")
@@ -45,7 +45,7 @@ class StudentRepositoryTest {
                 .build();
 
         Student student = Student.builder()
-                .email("funtusa@gmail.com")
+                .email("funtusaj@gmail.com")
                 .firstName("Funto")
                 .lastName("S Aanuoluwa")
                 .guardian(guardian)
