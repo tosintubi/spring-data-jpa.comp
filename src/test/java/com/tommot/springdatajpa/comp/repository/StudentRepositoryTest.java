@@ -63,7 +63,7 @@ class StudentRepositoryTest {
     }
     @Test
     public void findStudentByEmail(){
-        Student student = studentRepository.findStudentByEmail("funti");
+        Student student = studentRepository.findStudentByEmail("tosin@gmail.com");
         System.out.println(student);
     }
 
