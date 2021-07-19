@@ -2,6 +2,7 @@ package com.tommot.springdatajpa.comp.repository;
 
 import com.tommot.springdatajpa.comp.entity.Guardian;
 import com.tommot.springdatajpa.comp.entity.Student;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -20,13 +21,12 @@ class StudentRepositoryTest {
     @Autowired
     private StudentRepository studentRepository;
 
-
     @Test
     public void saveStudent(){
         Student student = Student.builder()
-                .email("hojhn@hotmail.com")
-                .firstName("John")
-                .lastName("Odugbenga")
+                .email("hjkojhn@hotmail.com")
+                .firstName("AJohn")
+                .lastName("KOdugbenga")
                 /*.guardianEmail("odugb.hj@gmail.com")
                 .guardianName("Michael Ajayi")
                 .guardianMobile("0809291281212")*/
@@ -39,15 +39,15 @@ class StudentRepositoryTest {
     @Test
     public void saveStudentWithGuardian(){
         Guardian guardian = Guardian.builder()
-                .name("Lateef K")
-                .email("latkee@aol.net")
+                .name("Hannes")
+                .email("hannes@aol.net")
                 .mobile("+1764353636")
                 .build();
 
         Student student = Student.builder()
-                .email("funtusaj@gmail.com")
-                .firstName("Funto")
-                .lastName("S Aanuoluwa")
+                .email("moanne@gmail.com")
+                .firstName("Moyinoluwalogo")
+                .lastName("Annelore")
                 .guardian(guardian)
                 .studentUUID(UUID.randomUUID())
                 .createdAt(LocalDateTime.now())
@@ -62,18 +62,32 @@ class StudentRepositoryTest {
 
     }
 
-    @Test
+   @Test
     public void findStudentsByFirstName(){
         List<Student> students = studentRepository.findByFirstName("funto");
         System.out.println("Number of Students: "+ students.size());
         students.forEach(System.out::println);
         //System.out.println("Students: "+ students);
     }
-
     @Test
     public void findStudentByFirstOrLastNameContaining(){
-        List<Student> students = studentRepository.findByFirstNameContainingOrLastNameContaining("ade", "olu");
+        List<Student> students = studentRepository.findByFirstNameContainingOrLastNameContaining("olu", "ade");
         System.out.println("Number of Students: "+ students.size());
         students.forEach(System.out::println);
     }
+
+    @Test
+    public void findStudentByFirstNameNotNull(){
+        List<Student> students = studentRepository.findByLastNameNotNull();
+        System.out.println("Number of Students: "+ students.size());
+        students.forEach(System.out::println);
+    }
+
+    @Test
+    public void findStudentByGuardianNull(){
+        List<Student> students = studentRepository.findByGuardianNull();
+        System.out.println("Number of Students: "+ students.size());
+        students.forEach(System.out::println);
+    }
+
 }
