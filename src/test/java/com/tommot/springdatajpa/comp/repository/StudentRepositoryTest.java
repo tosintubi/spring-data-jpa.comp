@@ -67,6 +67,12 @@ class StudentRepositoryTest {
         System.out.println(student);
     }
 
+    @Test
+    public void findStudentByEmailNativeNamedParam(){
+        Student student = studentRepository.findStudentByEmailNativeNamedParam("tosin@gmail.com");
+        System.out.println(student);
+    }
+
    @Test
     public void findStudentsByFirstName(){
         List<Student> students = studentRepository.findByFirstName("funto");
