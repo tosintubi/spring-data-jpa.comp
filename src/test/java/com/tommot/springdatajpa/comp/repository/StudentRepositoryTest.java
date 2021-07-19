@@ -61,6 +61,11 @@ class StudentRepositoryTest {
         System.out.printf("Student List = " + allStudents);
 
     }
+    @Test
+    public void findStudentByEmail(){
+        Student student = studentRepository.findStudentByEmail("funti");
+        System.out.println(student);
+    }
 
    @Test
     public void findStudentsByFirstName(){
