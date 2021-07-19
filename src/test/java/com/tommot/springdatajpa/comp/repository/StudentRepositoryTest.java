@@ -69,4 +69,11 @@ class StudentRepositoryTest {
         students.forEach(System.out::println);
         //System.out.println("Students: "+ students);
     }
+
+    @Test
+    public void findStudentByFirstOrLastNameContaining(){
+        List<Student> students = studentRepository.findByFirstNameContainingOrLastNameContaining("ade", "olu");
+        System.out.println("Number of Students: "+ students.size());
+        students.forEach(System.out::println);
+    }
 }

@@ -7,5 +7,12 @@ import java.util.List;
 
 public interface StudentRepository  extends JpaRepository<Student, Long> {
 
-    public List<Student> findByFirstName(String firstName);
+    List<Student> findByFirstName(String firstName);
+
+    List<Student> findByFirstNameContainingOrLastNameContaining(String firstName, String lastName);
+
+    List<Student> findByLastNameNotNull(String lastName);
+
+    List<Student> findByGuardianName(String guardianName);
+
 }
