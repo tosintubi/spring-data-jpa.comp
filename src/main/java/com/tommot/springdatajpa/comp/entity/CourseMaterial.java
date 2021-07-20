@@ -1,9 +1,6 @@
 package com.tommot.springdatajpa.comp.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(name = "tbl_course_material")
+// This will exclude course information when printing course materials. works with LAZY loading
+@ToString(exclude = "course")
 public class CourseMaterial {
     @Id
     @SequenceGenerator(
@@ -28,7 +27,8 @@ public class CourseMaterial {
     private String url;
 
     @OneToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY // Lazy retrieval
     )
     @JoinColumn(
             name = "course_id", // from Course Table
