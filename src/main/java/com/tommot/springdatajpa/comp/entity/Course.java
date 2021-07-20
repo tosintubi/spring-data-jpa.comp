@@ -26,6 +26,6 @@ public class Course {
     )
     private Long courseId;
     private String title;
-    private Integer courseTitle;
+    private Integer credit;
 
 }
