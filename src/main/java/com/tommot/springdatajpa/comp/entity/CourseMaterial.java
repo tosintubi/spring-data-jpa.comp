@@ -21,13 +21,15 @@ public class CourseMaterial {
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.IDENTITY,
-            generator = "course_material_sequence"
+            strategy = GenerationType.SEQUENCE,
+            generator = "course_material_seq"
     )
     private Long courseMaterialId;
     private String url;
 
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name = "course_id", // from Course Table
             referencedColumnName = "courseId"

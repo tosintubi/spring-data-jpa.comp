@@ -17,14 +17,14 @@ class CourseMaterialRepositoryTest {
 
     @Test
     public void saveCourseMaterial(){
-        Course course = Course.builder()
+        Course someCourse = Course.builder()
                 .title("Software Architecture for Blockchain Application")
                 .credit(9)
                 .build();
 
         CourseMaterial courseMaterial = CourseMaterial.builder()
                 .url("https://saba.org")
-                .course(course)
+                .course(someCourse)
                 .build();
         courseMaterialRepository.save(courseMaterial);
     }
