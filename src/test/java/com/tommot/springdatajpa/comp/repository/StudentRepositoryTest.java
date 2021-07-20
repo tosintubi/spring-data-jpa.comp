@@ -101,4 +101,9 @@ class StudentRepositoryTest {
         students.forEach(System.out::println);
     }
 
+    @Test
+    public void updateStudentByEmail(){
+        studentRepository.updateStudentNameByEmail("funtusa@gmail.com","Koshemani");
+    }
+
 }
