@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +39,7 @@ class CourseRepositoryTest {
                 .firstName("Sharif")
                 .lastName("Ojo")
                 .email("sharifrez@gmail")
+                .studentUUID(UUID.randomUUID())
                 .build();
 
         // Cant add student each time we create a course
