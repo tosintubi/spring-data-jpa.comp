@@ -137,5 +137,26 @@ class StudentRepositoryTest {
         );
         List<Student> students = studentRepository.findAll(sortByEmail).getContent();
         students.forEach(System.out::println);
+
+        Pageable sortByFirstName = PageRequest.of(
+                0,
+                4,
+                Sort.by("firstName").ascending()
+        );
+
+        List<Student> studentsByFirstName = studentRepository.findAll(sortByFirstName).getContent();
+        studentsByFirstName.forEach(System.out::println);
+
+        Pageable sortByFirstNameAndEmail = PageRequest.of(
+                0,
+                90, // test behaviour
+                Sort.by("firstName")
+                        .ascending()
+                .and(Sort.by("email"))
+        );
+        List<Student> someStudents = studentRepository.findAll(sortByFirstNameAndEmail).getContent();
+        someStudents.forEach(System.out::println);
+
     }
+
 }
