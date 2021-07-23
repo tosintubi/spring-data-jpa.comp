@@ -1,6 +1,8 @@
 package com.tommot.springdatajpa.comp.repository;
 
 import com.tommot.springdatajpa.comp.entity.Course;
+import com.tommot.springdatajpa.comp.entity.Student;
+import com.tommot.springdatajpa.comp.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,4 +26,30 @@ class CourseRepositoryTest {
     }
 
 
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+        Teacher teacher = Teacher.builder()
+                .title("Dr.")
+                .firstName("Karsten")
+                .lastName("Schumacher")
+                .build();
+
+        Student student  = Student.builder()
+                .firstName("Sharif")
+                .lastName("Ojo")
+                .email("sharifrez@gmail")
+                .build();
+
+        // Cant add student each time we create a course
+        Course course = Course.builder()
+                .title("AI & Cybersecurity")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+        // instead add student to course
+        course.addStudents(student);
+
+        courseRepository.save(course);
+    }
 }
