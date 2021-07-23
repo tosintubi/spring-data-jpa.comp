@@ -132,7 +132,7 @@ class StudentRepositoryTest {
     public void findAllWithSorting(){
         Pageable sortByEmail = PageRequest.of(
                 0,
-                2,
+                4,
                 Sort.by("email").ascending()
         );
         List<Student> students = studentRepository.findAll(sortByEmail).getContent();
