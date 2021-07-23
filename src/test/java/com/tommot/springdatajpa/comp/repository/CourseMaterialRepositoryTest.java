@@ -2,6 +2,7 @@ package com.tommot.springdatajpa.comp.repository;
 
 import com.tommot.springdatajpa.comp.entity.Course;
 import com.tommot.springdatajpa.comp.entity.CourseMaterial;
+import com.tommot.springdatajpa.comp.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,13 +20,20 @@ class CourseMaterialRepositoryTest {
 
     @Test
     public void saveCourseMaterial(){
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Ingo")
+                .lastName("Weber")
+                .title("Prof. Dr.")
+                .build();
         Course someCourse = Course.builder()
-                .title("Software Architecture for Blockchain Application")
-                .credit(9)
+                .title("FOOCRPT- Foundation of Cryptographic Protocols")
+                .credit(6)
+                .teacher(teacher)
                 .build();
 
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("https://saba.org")
+                .url("https://foocrypt.tu-berlin.de")
                 .course(someCourse)
                 .build();
         courseMaterialRepository.save(courseMaterial);

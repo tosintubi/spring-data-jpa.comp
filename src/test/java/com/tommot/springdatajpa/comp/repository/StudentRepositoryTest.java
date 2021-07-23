@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -106,4 +109,33 @@ class StudentRepositoryTest {
         studentRepository.updateStudentNameByEmail("funtusa@gmail.com","Koshemani");
     }
 
+    @Test
+    public void findAllPagination(){
+        Pageable firstPageOfThreeRecords = PageRequest.of(0,3);
+        Pageable secondPageOfThreeRecords = PageRequest.of(1,3);
+        Pageable lastPage = PageRequest.of(2,5);
+
+        List<Student> students = studentRepository.findAll(secondPageOfThreeRecords).getContent();
+        students.forEach(System.out::println);
+
+        Long totalElements;
+        Integer totalPages;
+        totalElements = studentRepository.findAll(lastPage).getTotalElements();
+        totalPages = studentRepository.findAll(secondPageOfThreeRecords).getTotalPages();
+
+        System.out.println("totalElements = " + totalElements);
+        System.out.println("totalPages = " + totalPages);
+    }
+
+
+    @Test
+    public void findAllWithSorting(){
+        Pageable sortByEmail = PageRequest.of(
+                0,
+                2,
+                Sort.by("email").ascending()
+        );
+        List<Student> students = studentRepository.findAll(sortByEmail).getContent();
+        students.forEach(System.out::println);
+    }
 }
