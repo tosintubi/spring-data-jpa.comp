@@ -1,6 +1,10 @@
 package com.tommot.springdatajpa.comp.repository;
 
 import com.tommot.springdatajpa.comp.entity.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -39,4 +43,6 @@ public interface StudentRepository  extends JpaRepository<Student, Long> {
     @Transactional
     @Query(value = "UPDATE Student s set s.lastName=:lastName WHERE s.email=:email")
     int updateStudentNameByEmail(String email, String lastName);
+
+    Page<Student> findByLastNameContaining(String lastName, Pageable pageable);
 }
