@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -40,4 +41,11 @@ public class Course {
             name = "teacher_id",
             referencedColumnName = "teacherId")
     private Teacher teacher;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_course_map"
+    )
+    private List<Student> students;
 }
