@@ -45,7 +45,15 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "student_course_map"
+            name = "student_course_map",
+            joinColumns = @JoinColumn(
+                    name = "course_id",
+                    referencedColumnName = "courseId"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "student_id",
+                    referencedColumnName = "studentId"
+            )
     )
     private List<Student> students;
 }
